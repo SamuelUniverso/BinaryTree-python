@@ -6,4 +6,4 @@ tree.insert('samuel')
 tree.insert('lucas')
 tree.insert('mateus')
 
-print(tree.search('samuel'))
+print(tree.search('samuel').value)
