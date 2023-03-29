@@ -117,3 +117,14 @@ class BinaryTree:
                 successor_parent.left = successor.right
             else:
                 successor_parent.right = successor.right
+
+    def _height(self, node):
+        if node is None:
+            return -1
+        else:
+            left_height = self._height(node.left)
+            right_height = self._height(node.right)
+            return 1 + max(left_height, right_height)
+
+    def tree_height(self):
+        return self._height(self.root)
