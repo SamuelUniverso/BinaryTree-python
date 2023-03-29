@@ -66,3 +66,54 @@ class BinaryTree:
             self._print_tree_recursive(node.right, level + 1)
             print('    ' * level + str(node.value))
             self._print_tree_recursive(node.left, level + 1)
+
+    def delete(self, value):
+        parent = None
+        current = self.root
+
+        # Find the node to delete and its parent
+        while current is not None:
+            if value == current.value:
+                break
+            elif value < current.value:
+                parent = current
+                current = current.left
+            else:
+                parent = current
+                current = current.right
+
+        # If the node was not found, return
+        if current is None:
+            return
+
+        # If the node has no children, simply delete it
+        if current.left is None and current.right is None:
+            if parent is None:
+                self.root = None
+            elif parent.left == current:
+                parent.left = None
+            else:
+                parent.right = None
+
+        # If the node has one child, replace it with the child
+        elif current.left is None or current.right is None:
+            child = current.left or current.right
+            if parent is None:
+                self.root = child
+            elif parent.left == current:
+                parent.left = child
+            else:
+                parent.right = child
+
+        # If the node has two children, replace it with its inorder successor
+        else:
+            successor_parent = current
+            successor = current.right
+            while successor.left is not None:
+                successor_parent = successor
+                successor = successor.left
+            current.value = successor.value
+            if successor_parent.left == successor:
+                successor_parent.left = successor.right
+            else:
+                successor_parent.right = successor.right
