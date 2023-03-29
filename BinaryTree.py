@@ -66,4 +66,3 @@ class BinaryTree:
             self._print_tree_recursive(node.right, level + 1)
             print('    ' * level + str(node.value))
             self._print_tree_recursive(node.left, level + 1)
-
