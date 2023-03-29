@@ -33,7 +33,7 @@ class BinaryTree:
         current = self.root
         while current is not None:
             if value == current.value:
-                return current
+                return current.value
             elif value < current.value:
                 current = current.left
             else:
