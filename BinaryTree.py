@@ -1,6 +1,6 @@
 class BinaryTree:
-    class Node:
 
+    class Node:
         def __init__(self, key, value):
             self.key = key
             self.value = value
