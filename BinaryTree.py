@@ -16,14 +16,14 @@ class BinaryTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, value):
-        node = self.Node(None, value)
+    def insert(self, key):
+        node = self.Node(None, key)
         if self.root is None:
             self.root = node
         else:
             current = self.root
             while True:
-                if value < current.value:
+                if key < current.key:
                     if current.left is None:
                         current.left = node
                         break
@@ -109,9 +109,9 @@ class BinaryTree:
 
         # Find the node to delete and its parent
         while current is not None:
-            if value == current.value:
+            if value == current.key:
                 break
-            elif value < current.value:
+            elif value < current.key:
                 parent = current
                 current = current.left
             else:
@@ -148,7 +148,7 @@ class BinaryTree:
             while successor.left is not None:
                 successor_parent = successor
                 successor = successor.left
-            current.value = successor.value
+            current.key = successor.key
             if successor_parent.left == successor:
                 successor_parent.left = successor.right
             else:
