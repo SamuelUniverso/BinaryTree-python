@@ -1,16 +1,43 @@
 class BinaryTree:
     class Node:
 
-        def __init__(self, value):
+        def __init__(self, key, value):
+            self.key = key
             self.value = value
             self.left = None
             self.right = None
+
+    def __init__(self, value):
+        self.key = None
+        self.value = value
+        self.left = None
+        self.right = None
 
     def __init__(self):
         self.root = None
 
     def insert(self, value):
-        node = self.Node(value)
+        node = self.Node(None, value)
+        if self.root is None:
+            self.root = node
+        else:
+            current = self.root
+            while True:
+                if value < current.value:
+                    if current.left is None:
+                        current.left = node
+                        break
+                    else:
+                        current = current.left
+                else:
+                    if current.right is None:
+                        current.right = node
+                        break
+                    else:
+                        current = current.right
+
+    def insertKV(self, key, value):
+        node = self.Node(key, value)
         if self.root is None:
             self.root = node
         else:
@@ -66,6 +93,15 @@ class BinaryTree:
             self._print_tree_recursive(node.right, level + 1)
             print('    ' * level + str(node.value))
             self._print_tree_recursive(node.left, level + 1)
+
+    def print_treeKV(self):
+        self._print_tree_recursiveKV(self.root, 0)
+
+    def _print_tree_recursiveKV(self, node, level):
+        if node is not None:
+            self._print_tree_recursiveKV(node.right, level + 1)
+            print('    ' * level + str(node.key) + " - " + str(node.value))
+            self._print_tree_recursiveKV(node.left, level + 1)
 
     def delete(self, value):
         parent = None
